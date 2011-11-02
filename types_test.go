@@ -9,7 +9,17 @@ func Test(t *testing.T)	{
 	TestingT(t)
 }
 
-type S struct {}
+type S struct {
+	attributes map[string] Type
+}
+
+func(s *S) SetUpSuite(c *C)	{
+	s.attributes = map[string] Type {
+		"A": Type{"A"},
+		"B": Type{"A"},
+		"A1": Type{"A"},
+	}
+}
 
 var _ = Suite(&S{})
 
@@ -19,11 +29,6 @@ func (s *S) TestEmptyHeading(c *C) {
 }
 
 func (s *S) TestHeading(c *C) {
-	attributes := map[string] Type {
-		"A": Type{"A"},
-		"B": Type{"A"},
-		"A1": Type{"A"},
-	}
-	h := Heading{attributes}
-	c.Check(h.Degree(), Equals, len(attributes))
+	h := Heading{s.attributes}
+	c.Check(h.Degree(), Equals, len(s.attributes))
 }

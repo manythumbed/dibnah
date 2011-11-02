@@ -4,15 +4,14 @@ type Type struct {
 	Name string
 }
 
-type Attribute struct {
-	Type Type
-	Name string
-}
-
 type Value struct {}
 
 type Heading struct {
-	attributes map[string] Attribute
+	attributes map[string] Type
+}
+
+func (h Heading) Degree() int {
+	return len(h.attributes)
 }
 
 type Tuple struct {

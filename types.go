@@ -50,5 +50,9 @@ type Tuple struct {
 }
 
 func (t Tuple) Equals(that Tuple) bool {
+	if t.Heading.Equals(that.Heading)	{
+
+	}
 	return false
 }
+
